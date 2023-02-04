@@ -27,6 +27,7 @@ export default {
 .item {
     padding: 10px;
     border: 2px solid rgb(12, 0, 187);
+    width: max-content;
 
     display: flex;
     justify-content: space-between;
@@ -37,6 +38,7 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-left: 30px;
 }
 
 </style>

@@ -1,23 +1,23 @@
 <template>
     <h1 class="page_title">Страница со списком задач</h1>
-    <task-form @create="createTask"/>
-    <h2 class="list_title">Список задач</h2>
-    <task-item
-        v-for="task in tasks"
-        :task="task"
-        :key="task.id"
-        @remove="removeTask(task)"/>
+    <task-form :class="'task_form'" @create="createTask"/>
+    <task-list
+        v-if="tasks.length > 0"
+        :class="'task_list'"
+        :tasks="tasks"
+        @remove="removeTask">Список задач</task-list>
+    <h2 v-else class="empty_task_list">Список задач пуст</h2>
 </template>
 
 <script>
+import TaskList from '@/components/TaskList.vue';
 import TaskForm from '@/components/TaskForm.vue';
-import TaskItem from '@/components/TaskItem.vue';
 
 export default {
-    name: 'tasks-list',
+    name: 'task-page',
     components: {
         TaskForm,
-        TaskItem
+        TaskList,
     },
     data() {
         return {
@@ -42,9 +42,7 @@ export default {
     },
     methods: {
         createTask(task) {
-            // console.log('ok');
             this.tasks.push(task);
-            console.log(this.tasks);
         },
         removeTask(deletedTask) {
             this.tasks = this.tasks.filter(task => task.id !== deletedTask.id);
@@ -58,11 +56,20 @@ export default {
         margin-bottom: 20px;
     } */
 
+    .task_form {
+        margin-top: 20px;
+    }
+
     .task_list {
         margin-top: 20px;
     }
 
     .list_title {
         margin-top: 30px;
+    }
+
+    .empty_task_list {
+        margin-top: 20px;
+        color: red;
     }
 </style>

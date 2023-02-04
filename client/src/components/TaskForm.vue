@@ -1,18 +1,20 @@
 <template>
-  <div class="create_title">Создание задачи</div>
-  <form class="task_form" @submit.prevent>
-    <input
-      v-model="task.title"
-      class="name_input"
-      type="text"
-      placeholder="Название задачи"/>
-    <input
-      v-model="task.body"
-      class="description_input"
-      type="text"
-      placeholder="Описание задачи"/>
-    <button class="btn" @click="createTask">Создать</button>
-  </form>
+  <div>
+    <div class="create_title">Создание задачи</div>
+    <form class="task_form" @submit.prevent>
+      <input
+        v-model="task.title"
+        class="name_input"
+        type="text"
+        placeholder="Название задачи"/>
+      <input
+        v-model="task.body"
+        class="description_input"
+        type="text"
+        placeholder="Описание задачи"/>
+      <button class="btn" @click="createTask">Создать</button>
+    </form>
+  </div>
 </template>
 
 <script>
