@@ -13,6 +13,7 @@
 
 <script>
 export default {
+    name: 'task-item',
     props: {
         task: {
             title: String,
@@ -27,7 +28,7 @@ export default {
 .item {
     padding: 10px;
     border: 2px solid rgb(12, 0, 187);
-    width: max-content;
+    width: 500px;
 
     display: flex;
     justify-content: space-between;

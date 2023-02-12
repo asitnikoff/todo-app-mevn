@@ -10,52 +10,40 @@
 </template>
 
 <script>
-import TaskList from '@/components/TaskList.vue';
-import TaskForm from '@/components/TaskForm.vue';
+import axios from 'axios';
 
 export default {
     name: 'task-page',
-    components: {
-        TaskForm,
-        TaskList,
-    },
     data() {
         return {
-            tasks: [
-                {
-                    id: 1,
-                    title: 'Task #1',
-                    body: 'Body #1'
-                },
-                {
-                    id: 2,
-                    title: 'Task #2',
-                    body: 'Body #2'
-                },
-                {
-                    id: 3,
-                    title: 'Task #3',
-                    body: 'Body #3'
-                },
-            ],
+            tasks: [],
         }
     },
+    created() {
+        this.fetchTasks();
+    },
     methods: {
-        createTask(task) {
-            this.tasks.push(task);
+        async createTask(task) {
+            const response = await axios.post('http://localhost:3000/api/tasks', task);
+            this.tasks.push(response.data);
         },
-        removeTask(deletedTask) {
-            this.tasks = this.tasks.filter(task => task.id !== deletedTask.id);
+        async removeTask(taskId) {
+            const response = await axios.delete(`http://localhost:3000/api/tasks/${taskId}`);
+            if (response.status === 200) {
+                this.tasks = this.tasks.filter(task => task.id !== taskId);
+            } else {
+                console.log('Произошла ошибка при удалении задачи');
+            }
+        },
+        async fetchTasks() {
+            const response = await axios.get('http://localhost:3000/api/tasks');
+            this.tasks = response.data;
         }
     }
 }
 </script>
 
 <style scoped>
-    /* .page_title {
-        margin-bottom: 20px;
-    } */
-
     .task_form {
         margin-top: 20px;
     }

@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     createTask() {
-      this.task.id = Date.now();
+      // this.task.id = Date.now();
       this.$emit('create', this.task);
       this.task = {
         title: '',

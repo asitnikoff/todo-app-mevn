@@ -7,18 +7,14 @@
             v-for="task in tasks"
             :task="task"
             :key="task.id"
-            @remove="$emit('remove', task)"/>
+            @remove="$emit('remove', task.id)"/>
     </div>
 </template>
 
 <script>
-import TaskItem from './TaskItem.vue';
 
 export default {
     name: 'task-list',
-    components: {
-        TaskItem
-    },
     props: {
         tasks: {
             type: Array,
