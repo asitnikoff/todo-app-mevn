@@ -1,13 +1,9 @@
 <template>
-    <h1>Главная страница приложения</h1>
+  <h1>Главная страница приложения ToDo App реализованного на Vue.js</h1>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -6,31 +6,33 @@
         v-model="task.title"
         class="name_input"
         type="text"
-        placeholder="Название задачи"/>
+        placeholder="Название задачи" />
       <input
         v-model="task.body"
         class="description_input"
         type="text"
-        placeholder="Описание задачи"/>
-      <button class="btn" @click="createTask">Создать</button>
+        placeholder="Описание задачи" />
+      <my-button title="Создать" class="btn" @click="createTask" />
     </form>
   </div>
 </template>
 
 <script>
+import MyButton from '@/components/ui/MyButton.vue';
 
 export default {
-  name: "task-form",
-  emits: [
-    "create"
-  ],
+  name: 'task-form',
+  emits: ['create'],
+  components: {
+    MyButton,
+  },
   data() {
     return {
       task: {
         title: '',
         body: '',
-      }
-    }
+      },
+    };
   },
   methods: {
     createTask() {
@@ -38,26 +40,31 @@ export default {
       this.$emit('create', this.task);
       this.task = {
         title: '',
-        body: ''
+        body: '',
       };
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-  .task_form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-  }
+.task_form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
 
-  .description_input {
-    margin-top: 5px;
-  }
+.name_input {
+  width: 300px;
+}
 
-  .btn {
-    width: max-content;
-    margin-top: 5px;
-  }
+.description_input {
+  width: 300px;
+  margin-top: 5px;
+}
+
+.btn {
+  width: max-content;
+  margin-top: 5px;
+}
 </style>
